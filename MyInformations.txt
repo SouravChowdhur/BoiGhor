@@ -1,0 +1,39 @@
+1. User 1
+{
+    "name": "SOURAV CHOWDHURY(USER)",
+    "email": "sourav.200.created@gmail.com",
+    "password": "sourav123456789"
+}
+
+2. User 2
+{
+    "name": "SOURAV CHOWDHURY(ADMIN)",
+    "email": aec.cse.souravchowdhury@gmail.com
+    "password": sourav@1234
+}
+
+3. User 3
+{
+    "name": "SOURAV CHOWDHURYV2",
+    "email": "souravchowdhurybnk@gmail.com",
+    "password": "sourav#123456"
+}
+
+
+
+3. User 3
+{
+    "name": "SANDEEP CHATTERJEE",
+    "email": sandeepchatterjee12345@gmail.com
+    "password": Sandeep@12345 sandeep@321
+}
+
+
+4. User 4
+{
+name: "Anupam Chowdhury" [admin]
+email: anupamchowdhury@gmail.com
+password:   anupam@123
+}
+
+
