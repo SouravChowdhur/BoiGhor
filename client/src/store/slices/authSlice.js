@@ -144,7 +144,7 @@ export const resetAuthSlice = ()=> (dispatch)=>{
 
 export const register = (data)=> async(dispatch)=>{
     dispatch(authSlice.actions.registerRequest())
-    await axios.post("http://localhost:4000/api/v1/auth/register", data, {
+    await axios.post("https://boighor-backend.onrender.com/api/v1/auth/register", data, {
         withCredentials: true,
         headers: {
             "Content-Type": "application/json"
