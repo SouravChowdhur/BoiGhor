@@ -28,7 +28,7 @@ const AddBookPopup = () => {
     <div className='fixed inset-0 bg-black bg-opacity-50 p-5 flex items-center justify-center z-50'>
       <div className='w-full bg-orange-100 rounded-lg shadow-lg md:w-1/3'>
         <div className='p-6'>
-          <h3 className='text-xl mb-4 font-bold text-orange-500'>Record Book</h3>
+          <h3 className='text-xl mb-4 font-bold text-orange-500'>Add Book</h3>
           <form onSubmit={handleAddBook}>
             <div className='mb-4'>
               <label className='block text-orange-500 font-medium'>Book Title</label>

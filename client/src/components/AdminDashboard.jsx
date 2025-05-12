@@ -17,6 +17,8 @@ ChartJS.register(
   CategoryScale, LinearScale, LineElement, PointElement, BarElement, Title, Tooltip, Legend, ArcElement
 );
 
+// [Same imports as before]
+
 const AdminDashboard = () => {
   const { user } = useSelector((state) => state.auth);
   const { users } = useSelector((state) => state.user);
@@ -39,6 +41,7 @@ const AdminDashboard = () => {
     let numberOfTotalReturnedBooks = allBorrowedBooks.filter(book => book.returnedDate !== null)
     setTotalBorrowedBooks(numberOfTotalBorrowedBooks.length);
     setTotalReturnedBooks(numberOfTotalReturnedBooks.length);
+
     setTotalBooks(books.length)
   }, [users, allBorrowedBooks]);
 
@@ -48,101 +51,88 @@ const AdminDashboard = () => {
     datasets: [
       {
         data: [totalBorrowedBooks, totalReturnedBooks],
-        backgroundColor: ["#3D3E3E", "#151619"],
+        backgroundColor: ["#FFA500", "#FF8C00"],
         hoverOffset: 4
       }
     ]
   }
 
-
   return <>
-
-    <main className="relative flex-1 p-6 pt-28">
-
+    <main className="relative flex-1 p-6 pt-28 bg-[#f7f8fa]">
       <Header />
-      <div className="flex flex-col-reverse xl:flex-row">
-        <div className='flex-[2] flex-col gap-7 lg:flex-row flex lg:items-center xl:flex-col justify-between xl:gap-20 py-5'>
-          <div className='xl:flex-[4] flex items-end w-full content-center'>
-            <Pie data={data} options={{ cutout: 0 }} className='mx-auto lg:mx-0 w-full h-auto' />
-          </div>
-          <div className='flex items-center p-8 w-full sm:w-[400px] xl:w-fit mr-5 xl:p-3 2xl:p-6 gap-5 h-fit xl:min-h-[150px] bg-white xl:flex-1 rounded-lg'>
-            <img src={logo_with_title} alt="logo" className='w-auto xl:flex-1 rounded-lg' />
-            <span className='w-[2px] bg-black h-full'></span>
-            <div className='flex flex-col gap-3'>
+      <div className="flex flex-col-reverse xl:flex-row gap-10">
+        <div className='flex-[2] flex-col gap-10 lg:flex-row flex lg:items-center xl:flex-col justify-between xl:gap-16 py-5'>
+          <div className='flex flex-col w-full gap-4'>
+  <Pie data={data} options={{ cutout: 0 }} className='mx-auto lg:mx-0 w-full h-auto' />
+
+  <div className='bg-white shadow-md rounded-lg p-4 flex items-center gap-4'>
+    <FaBook className='text-orange-500 text-3xl' />
+    <div className='flex flex-col'>
+      <h5 className='text-md font-semibold text-gray-800'>Monitor Borrowing Trends</h5>
+      <p className='text-sm text-gray-600'>Stay updated with real-time insights on borrowing and returning behavior.</p>
+    </div>
+  </div>
+</div>
+
+          <div className='flex items-center p-6 w-full sm:w-[400px] xl:w-fit xl:p-4 gap-5 h-fit bg-white rounded-xl shadow-md'>
+            <img src={logo_with_title} alt="logo" className='w-24 object-contain rounded-md' />
+            <span className='w-[2px] bg-gray-300 h-24'></span>
+            <div className='flex flex-col gap-3 text-sm font-medium'>
               <p className='flex items-center gap-3'>
-                <span className='w-3 h-3 rounded-full bg-[#3D3E3E]'></span>
-                <span>Total Borrowed Books</span>
+                <span className='w-3 h-3 rounded-full bg-[#FFA500]'></span>
+                Total Borrowed Books
               </p>
               <p className='flex items-center gap-3'>
-                <span className='w-3 h-3 rounded-full bg-[#151619]'></span>
-                <span>Total Returned Books</span>
+                <span className='w-3 h-3 rounded-full bg-[#FF8C00]'></span>
+                Total Returned Books
               </p>
             </div>
           </div>
         </div>
 
-        <div className='flex flex-[4] flex-col gap-7 lg:gap-7 lg:py-5 justify-between xl:min-h-[85.5vh]'>
+        <div className='flex flex-[4] flex-col gap-8 lg:gap-7 lg:py-5 justify-between xl:min-h-[85.5vh]'>
           <div className='flex flex-col-reverse lg:flex-row gap-7 flex-[4]'>
-            <div className='flex flex-col gap-7 flerx-1'>
-              <div className='flex items-center gap-3 bg-white p-5 max-h-[120px] overflow-y-hidden rounded-lg transition hover:shadow-inner duration-300 w-full lg:max-w-[360px]'>
-                <span className='bg-gray-300 h-20 min-w-20 flex justify-center items-center rounded-lg'>
-                  <img src={user_icon} alt="" className='w-8 h-8' />
-                </span>
-                <span className='w-[2px] bg-black h-20 lg:h-full'></span>
-                <div className='flex flex-col items-center gap-2'>
-                  <h4 className='font-black text-3xl'>{totalUsers}</h4>
-                  <p className='font-light text-gray-700 text-sm'>Total User Base</p>
+            <div className='flex flex-col gap-7'>
+              {[
+                { count: totalUsers, label: "Total User Base", icon: user_icon },
+                { count: totalBooks, label: "Total Book Count", icon: book_icon },
+                { count: totalAdmin, label: "Total Admin Count", icon: admin_icon }
+              ].map(({ count, label, icon }, index) => (
+                <div key={index} className='flex items-center gap-4 bg-white p-5 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl w-full lg:max-w-[360px]'>
+                  <div className='bg-gray-200 h-20 w-20 flex justify-center items-center rounded-lg'>
+                    <img src={icon} alt="" className='w-8 h-8' />
+                  </div>
+                  <span className='w-[2px] bg-gray-300 h-20'></span>
+                  <div className='flex flex-col items-center gap-2'>
+                    <h4 className='font-extrabold text-3xl text-[#333]'>{count}</h4>
+                    <p className='text-gray-600 text-sm'>{label}</p>
+                  </div>
                 </div>
-              </div>
-              <div className='flex items-center gap-3 bg-white p-5 max-h-[120px] overflow-y-hidden rounded-lg transition hover:shadow-inner duration-300 w-full lg:max-w-[360px]'>
-                <span className='bg-gray-300 h-20 min-w-20 flex justify-center items-center rounded-lg'>
-                  <img src={book_icon} alt="" className='w-8 h-8' />
-                </span>
-                <span className='w-[2px] bg-black h-20 lg:h-full'></span>
-                <div className='flex flex-col items-center gap-2'>
-                  <h4 className='font-black text-3xl'>{totalBooks}</h4>
-                  <p className='font-light text-gray-700 text-sm'>Total Book Count</p>
-                </div>
-              </div>
-              <div className='flex items-center gap-3 bg-white p-5 max-h-[120px] overflow-y-hidden rounded-lg transition hover:shadow-inner duration-300 w-full lg:max-w-[360px]'>
-                <span className='bg-gray-300 h-20 min-w-20 flex justify-center items-center rounded-lg'>
-                  <img src={admin_icon} alt="" className='w-8 h-8' />
-                </span>
-                <span className='w-[2px] bg-black h-20 lg:h-full'></span>
-                <div className='flex flex-col items-center gap-2'>
-                  <h4 className='font-black text-3xl'>{totalAdmin}</h4>
-                  <p className='font-light text-gray-700 text-sm'>Total Admin Count</p>
-                </div>
-              </div>
+              ))}
             </div>
-            <div className='flex flex-col lg:flex-row flex-1'>
-              <div className='flex flex-col lg:flex-row flex-1 items-center justify-center'>
-                <div className='bg-white p-5 rounded-lg shadow-lg h-full flex flex-col justify-center items-center gap-4'>
-                  <img src={user && user.avatar?.url} alt="avatar" className='rounded-full h-32 w-32 object-cover' />
-                  <h2 className='text-xl 2xl:text-2xl font-semibold text-center'>{user && user.name}</h2>
-                  <p className='text-gray-600 text-sm 2xl:text-base text-center'>Welcome to Boighor Admin Panel!
-                    You're in control of everything — from books to borrowers.
-                    Monitor activity, manage users, and keep things running smoothly.
-                    Your role ensures seamless access and reliable service for all.
-                    Let's make reading smarter, one admin task at a time!</p>
-                </div>
+            <div className='flex-1 flex items-center justify-center'>
+              <div className='bg-white p-6 rounded-xl shadow-md h-full flex flex-col justify-center items-center text-center gap-4'>
+                <img src={user && user.avatar?.url} alt="avatar" className='rounded-full h-28 w-28 object-cover border-4 border-[#FFA500]' />
+                <h2 className='text-xl 2xl:text-2xl font-semibold'>{user && user.name}</h2>
+                <p className='text-gray-600 text-sm 2xl:text-base leading-relaxed'>
+                  Welcome to Boighor Admin Panel! You're in control of everything — from books to borrowers.
+                  Monitor activity, manage users, and keep things running smoothly.
+                  Your role ensures seamless access and reliable service for all.
+                  Let's make reading smarter, one admin task at a time!
+                </p>
               </div>
             </div>
           </div>
-          <div className='hidden xl:flex bg-white p-7 text-lg sm:text-xl xl:text-2xl 2xl:text-4xl min-h-52 font-semibold relative flex-[3] justify-center items-center rounded-2xl'>
-            <h4 className='overflow-y-hidden'>Welcome to Boighor — your ultimate library management system.
-              Manage books, users, and transactions seamlessly with just a few clicks.
-              Track borrowed books, their due dates, and monitor book availability.
-              Boighor makes it easier for admins to oversee all aspects of the library.
-             </h4>
-            <p className='text-gray-700 text-sm sm:text-lg absolute right-[35px] sm:right-[78px] bottom-[10px]'>~BoiGhor Team</p>
+          <div className='hidden xl:flex bg-white p-8 text-lg sm:text-xl xl:text-2xl 2xl:text-4xl font-semibold relative rounded-2xl shadow-md'>
+            <h4 className='leading-relaxed'>
+              Welcome to Boighor — your ultimate library management system. Manage books, users, and transactions seamlessly with just a few clicks. Track borrowed books, their due dates, and monitor book availability. Boighor makes it easier for admins to oversee all aspects of the library.
+            </h4>
+            <p className='text-gray-500 text-sm sm:text-base absolute right-6 bottom-4'>~BoiGhor Team</p>
           </div>
         </div>
       </div>
     </main>
   </>
-
-
 }
 
-export default AdminDashboard
+export default AdminDashboard;

@@ -27,9 +27,7 @@ const ForgotPassword = () => {
       dispatch(resetAuthSlice())
     }
   }, [isAuthenticated, loading, error, dispatch]);
-  if (isAuthenticated) {
-    return <Navigate to={"/"} />
-  }
+  
   return <>
     <div className='flex flex-col justify-center md:flex-row h-screen'>
       <div className='hidden w-full md:w-1/2 bg-white text-orange-600 border-4 border-orange-600 md:flex flex-col items-center justify-center p-8 rounded-tr-[80px] rounded-br-[80px]'>

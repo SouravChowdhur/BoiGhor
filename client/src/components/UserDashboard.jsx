@@ -32,7 +32,7 @@ const UserDashboard = () => {
     datasets: [
       {
         data: [totalBorrowedBooks, totalReturnedBooks],
-        backgroundColor: ["#3D3E3E", "#151619"],
+        backgroundColor: ["#FFA500", "#FF8C00"],
         hoverOffset: 4
       }
     ]
@@ -83,11 +83,11 @@ const UserDashboard = () => {
             <span className='w-[2px] bg-black h-full'></span>
             <div className='flex flex-col gap-5'>
               <p className='flex items-center gap-3'>
-                <span className='w-3 h-3 rounded-full bg-[#3D3E3E]'></span>
+                <span className='w-3 h-3 rounded-full bg-[#FFA500]'></span>
                 <span>Total Borrowed Books</span>
               </p>
               <p className='flex items-center gap-3'>
-                <span className='w-3 h-3 rounded-full bg-[#151619]'></span>
+                <span className='w-3 h-3 rounded-full bg-[#FF8C00]'></span>
                 <span>Total Returned Books</span>
               </p>
             </div>

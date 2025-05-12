@@ -26,18 +26,20 @@ const Login = () => {
   };
 
   useEffect(()=>{
-    // if(message){
-    //  toast.success(message);
-    //  dispatch(resetAuthSlice());
-    // }
+   
+    if(message){
+     toast.success(message);
+     dispatch(resetAuthSlice());
+    }
     if(error){
      toast.error(error);
      dispatch(resetAuthSlice())
     }
+    
 }, [isAuthenticated, loading, error, dispatch]);
-if(isAuthenticated){
- return <Navigate to={"/"}/>
-}
+     if(isAuthenticated){
+       return <Navigate to = {"/"}/>;
+    }
   return <>
     <div className='flex flex-col justify-center md:flex-row h-screen'>
       <div className='w-full md:w-1/2 flex items-center justify-center bg-white p-8 relative'>

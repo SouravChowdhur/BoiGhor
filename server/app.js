@@ -20,7 +20,7 @@ config({path: "./config/config.env"});
 
 
 app.use(cors({
-    origin: ["https://boighor-frontend.onrender.com"],
+    origin: [process.env.FRONTEND_URL],
     METHODS: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));

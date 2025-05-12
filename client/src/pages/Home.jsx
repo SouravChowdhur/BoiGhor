@@ -13,7 +13,7 @@ import MyBorrowedBooks from "../components/MyBorrowedBooks";
 const Home = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [selectedComponent, setSelectedComponent] = useState("");
-    const {user, isAuthenticated} = useSelector(state => state.auth);
+    const {user, isAuthenticated} = useSelector((state) => state.auth);
     if(!isAuthenticated){
         return <Navigate to={"/login"}/>
     }

@@ -39,7 +39,7 @@ const Register = () => {
          }
     }, [isAuthenticated, loading, error, dispatch]);
     if(isAuthenticated){
-      return <Navigate to={"/"}/>
+      return <Navigate to = {"/"}/>;
     }
     return  <> 
     <div className='flex flex-col justify-center md:flex-row h-screen'>
