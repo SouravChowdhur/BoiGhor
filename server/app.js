@@ -20,7 +20,7 @@ config({path: "./config/config.env"});
 
 
 app.use(cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: ["https://spontaneous-kataifi-122e24.netlify.app"],
     METHODS: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
