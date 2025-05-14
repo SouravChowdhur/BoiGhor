@@ -119,6 +119,8 @@ export const logout = catchAsyncErrors(async(req, res, next)=>{
    res.status(200).cookie("token", "", {
       expires: new Date(Date.now()),
       httpOnly: true,
+      secure: true, // important for HTTPS
+      sameSite: "None" // important for cross-origin cookies (Netlify → Render)
    }).json({
       success: true,
       message: "Logout successfully",
